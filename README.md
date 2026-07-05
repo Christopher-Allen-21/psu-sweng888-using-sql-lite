@@ -1,4 +1,4 @@
-# PSU SWENG-888 Using SQL Lite
+# PSU SWENG-888 Using SQLite
 
 ## Description
 In this assignment, you will create an Android application that allows users to visualize a list of products that are available in the database (using SQLite). The MainActivity will show the list of products available. The user will select at least three products and click on the button "Next.” It will transition the SecondActivity and pass all three (or more) products as parameters. The second activity has a button at the top (above the List or RecyclerView) where the user can click to send the information about the selected product via email. Once all the information is successfully sent, the SecondActivity will show a Toast indicating the completion, and the list of products will be empty. The product class should have the following attributes: id, name, description, seller, price, and a picture of the product. 
