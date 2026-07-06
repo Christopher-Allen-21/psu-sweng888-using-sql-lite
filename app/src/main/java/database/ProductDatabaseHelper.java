@@ -6,7 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.psu_sweng888_using_sql_lite.R;
+
 import java.util.ArrayList;
+import java.util.UUID;
 
 import models.Product;
 
@@ -108,10 +111,11 @@ public class ProductDatabaseHelper extends SQLiteOpenHelper {
 
     // Populate the database with initial sample data
     public void populateProductDatabase() {
-//        this.addProduct(new Product("iPhone 14", "Refurbished Apple iPhone", "Apple", 600.45, R.drawable.iphone14));
-//        this.addProduct(new Product("Note 10", "Refurbished Samsung Note", "Samsung", 500.45, R.drawable.note10));
-//        this.addProduct(new Product("Samsung Z Fold 4", "Refurbished Samsung Z Fold", "Samsung", 700.45, R.drawable.samsung_z_fold4));
-//        this.addProduct(new Product("Note 10", "Refurbished Google Pixel", "Google", 450.45, R.drawable.google_pixel5));
+        this.addProduct(new Product(1, "Xbox Series X", "Featuring a custom 8-core AMD Zen 2 CPU, a 12-teraflop AMD RDNA 2 GPU, 16 GB of GDDR6 RAM, and a lightning-fast 1 TB NVMe SSD.", "Microsoft", 650.0, ""));
+        this.addProduct(new Product(2, "Playstation 5", "Featuring a custom AMD Zen 2 CPU, RDNA 2 GPU, and an ultra-fast SSD, it delivers near-instant load times, 4K gaming at up to 120fps, and advanced features like hardware-accelerated ray tracing and immersive DualSense controller haptics.", "Sony", 699.99, ""));
+        this.addProduct(new Product(3, "Nintendo Switch 2", "Equipped with 256GB of internal storage and magnetic Joy-Con 2 controllers, it retains hybrid portability while delivering vastly improved load times and graphic performance.", "Nintendo", 450, ""));
+        this.addProduct(new Product(4, "Steam Deck", "A powerful handheld device featuring custom AMD processors, SteamOS, and a high-quality display that enables you to take your entire Steam library anywhere.", "Valve", 795.0, ""));
+
     }
 
     // Helper method to convert a database row (Cursor) into a Product object

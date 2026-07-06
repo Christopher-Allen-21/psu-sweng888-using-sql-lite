@@ -15,7 +15,7 @@ import models.Product;
 import models.ProductAdapter;
 
 
-public class MainPracticeIII extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     ProductAdapter productAdapter;
 

@@ -55,7 +55,7 @@ public class SendEmailScreen extends AppCompatActivity {
 
         // when SendSelectedButton is selected, pass the selected products to MainPracticeIII and start it again
         sendSelectedButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, MainPracticeIII.class);
+            Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("selected_products", selectedProducts);
             startActivity(intent);
         });
@@ -80,10 +80,10 @@ public class SendEmailScreen extends AppCompatActivity {
             emailBody.append("Description: ").append(product.getDescription()).append("\n\n");
 
             // Convert the drawable image resource into a URI using FileProvider
-            Uri imageUri = getImageUriFromDrawable(product.getPicture(), product.getName() + ".png");
-            if (imageUri != null) {
-                imageUris.add(imageUri);
-            }
+//            String imageUri = getImageUriFromDrawable(product.getPicture(), product.getName() + ".png");
+//            if (imageUri != null) {
+//                imageUris.add(imageUri);
+//            }
         }
 
         // Build the email intent
@@ -140,7 +140,7 @@ public class SendEmailScreen extends AppCompatActivity {
                 selectedProducts.clear();
 
                 // Return to the main screen
-                Intent intent = new Intent(this, MainPracticeIII.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra("selected_products", selectedProducts);
                 startActivity(intent);
                 finish(); // Remove this activity from the back stack
