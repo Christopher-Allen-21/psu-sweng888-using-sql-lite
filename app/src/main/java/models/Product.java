@@ -1,20 +1,32 @@
 package models;
 
-public class Product {
+import java.io.Serializable;
+import java.util.UUID;
 
-    private int id;
+public class Product implements Serializable {
+    private UUID id;
     private String name;
     private String description;
     private String seller;
     private double price;
-    private String picture;
+    private int picture; // URL or file path to the image
 
+    // Empty Constructor
     public Product() {
+        this.id = UUID.randomUUID();;
     }
 
-    // Parameterized constructor
-    public Product(int id, String name, String description,
-                   String seller, double price, String picture) {
+    // Constructor
+    public Product(String name, String description, String seller, double price, int picture) {
+        this.id = UUID.randomUUID();;
+        this.name = name;
+        this.description = description;
+        this.seller = seller;
+        this.price = price;
+        this.picture = picture;
+    }
+
+    public Product(UUID id, String name, String description, String seller, double price, int picture) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -23,11 +35,12 @@ public class Product {
         this.picture = picture;
     }
 
-    public int getId() {
+    // Getters and Setters
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -63,23 +76,20 @@ public class Product {
         this.price = price;
     }
 
-    public String getPicture() {
+    public int getPicture() {
         return picture;
     }
 
-    public void setPicture(String picture) {
+    public void setPicture(int picture) {
         this.picture = picture;
     }
 
     @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", seller='" + seller + '\'' +
-                ", price=" + price +
-                ", picture='" + picture + '\'' +
-                '}';
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Product product = (Product) obj;
+        return id.equals(product.id);
     }
 }
+

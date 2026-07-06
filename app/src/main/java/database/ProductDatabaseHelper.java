@@ -1,5 +1,6 @@
 package database;
 
+import models.Product;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,12 +12,10 @@ import com.example.psu_sweng888_using_sql_lite.R;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import models.Product;
-
 public class ProductDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "product_database";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
 
     private static final String TABLE_PRODUCTS = "products";
 
@@ -100,7 +99,7 @@ public class ProductDatabaseHelper extends SQLiteOpenHelper {
     // Helper method to convert a Product object to ContentValues
     public ContentValues getContentValues(Product product) {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_ID, product.getId());
+        values.put(COLUMN_ID, product.getId().toString());
         values.put(COLUMN_NAME, product.getName());
         values.put(COLUMN_DESCRIPTION, product.getDescription());
         values.put(COLUMN_SELLER, product.getSeller());
@@ -111,21 +110,20 @@ public class ProductDatabaseHelper extends SQLiteOpenHelper {
 
     // Populate the database with initial sample data
     public void populateProductDatabase() {
-        this.addProduct(new Product(1, "Xbox Series X", "Featuring a custom 8-core AMD Zen 2 CPU, a 12-teraflop AMD RDNA 2 GPU, 16 GB of GDDR6 RAM, and a lightning-fast 1 TB NVMe SSD.", "Microsoft", 650.0, ""));
-        this.addProduct(new Product(2, "Playstation 5", "Featuring a custom AMD Zen 2 CPU, RDNA 2 GPU, and an ultra-fast SSD, it delivers near-instant load times, 4K gaming at up to 120fps, and advanced features like hardware-accelerated ray tracing and immersive DualSense controller haptics.", "Sony", 699.99, ""));
-        this.addProduct(new Product(3, "Nintendo Switch 2", "Equipped with 256GB of internal storage and magnetic Joy-Con 2 controllers, it retains hybrid portability while delivering vastly improved load times and graphic performance.", "Nintendo", 450, ""));
-        this.addProduct(new Product(4, "Steam Deck", "A powerful handheld device featuring custom AMD processors, SteamOS, and a high-quality display that enables you to take your entire Steam library anywhere.", "Valve", 795.0, ""));
-
+        this.addProduct(new Product("Xbox Series X", "Featuring a custom 8-core AMD Zen 2 CPU, a 12-teraflop AMD RDNA 2 GPU, 16 GB of GDDR6 RAM, and a lightning-fast 1 TB NVMe SSD.", "Microsoft", 650.0, R.drawable.xbox_series_x));
+        this.addProduct(new Product("Playstation 5", "Featuring a custom AMD Zen 2 CPU, RDNA 2 GPU, and an ultra-fast SSD, it delivers near-instant load times, 4K gaming at up to 120fps, and advanced features like hardware-accelerated ray tracing and immersive DualSense controller haptics.", "Sony", 699.99, R.drawable.play_station_5));
+        this.addProduct(new Product("Nintendo Switch 2", "Equipped with 256GB of internal storage and magnetic Joy-Con 2 controllers, it retains hybrid portability while delivering vastly improved load times and graphic performance.", "Nintendo", 450, R.drawable.nintendo_switch_2));
+        this.addProduct(new Product("Steam Deck", "A powerful handheld device featuring custom AMD processors, SteamOS, and a high-quality display that enables you to take your entire Steam library anywhere.", "Valve", 795.0, R.drawable.steam_deck));
     }
 
     // Helper method to convert a database row (Cursor) into a Product object
     private Product parseProduct(Cursor cursor) {
-        int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+        UUID id = UUID.fromString(cursor.getString(cursor.getColumnIndexOrThrow("id")));
         String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
         String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
         String seller = cursor.getString(cursor.getColumnIndexOrThrow("seller"));
         double price = cursor.getDouble(cursor.getColumnIndexOrThrow("price"));
-        String picture = cursor.getString(cursor.getColumnIndexOrThrow("picture"));
+        int picture = cursor.getInt(cursor.getColumnIndexOrThrow("picture"));
         return new Product(id, name, description, seller, price, picture);
     }
 

@@ -80,10 +80,10 @@ public class SendEmailScreen extends AppCompatActivity {
             emailBody.append("Description: ").append(product.getDescription()).append("\n\n");
 
             // Convert the drawable image resource into a URI using FileProvider
-//            String imageUri = getImageUriFromDrawable(product.getPicture(), product.getName() + ".png");
-//            if (imageUri != null) {
-//                imageUris.add(imageUri);
-//            }
+            Uri imageUri = getImageUriFromDrawable(product.getPicture(), product.getName() + ".png");
+            if (imageUri != null) {
+                imageUris.add(imageUri);
+            }
         }
 
         // Build the email intent
