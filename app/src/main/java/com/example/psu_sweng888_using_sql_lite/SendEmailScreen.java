@@ -134,7 +134,7 @@ public class SendEmailScreen extends AppCompatActivity {
     private final ActivityResultLauncher<Intent> emailLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
                 // Notify the user that email was sent
-                Toast.makeText(this, "Email sent. Clearing list.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Email sent. Clearing list.", Toast.LENGTH_LONG).show();
 
                 // Clear the in-memory product list (not from the database)
                 selectedProducts.clear();
